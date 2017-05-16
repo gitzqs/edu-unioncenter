@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://cxf.apache.org/core
+			http://cxf.apache.org/schemas/core.xsd
+			http://cxf.apache.org/jaxrs
+			http://cxf.apache.org/schemas/jaxrs.xsd
+			">
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging limit="102400"/>
+        </cxf:features>
+    </cxf:bus>
+
+    <!-- user -->
+    <bean id="testService" class="com.zqs.service.impl.DefaultTestServiceImpl"></bean>
+    
+    <!--REST发布容器-->
+    <jaxrs:server id="restServiceContainer" address="/rest">
+        <jaxrs:serviceBeans>
+            <!-- user -->
+            <ref bean="testService"/>
+            
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json" />
+        </jaxrs:extensionMappings>
+        <jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+        </jaxrs:providers>
+       <!-- <jaxrs:inInterceptors>
+            <ref bean="gatewayInInterceptor"/>
+        </jaxrs:inInterceptors> -->
+        <!-- <jaxrs:outInterceptors>
+            <ref bean="gatewayOutInterceptor"/>
+        </jaxrs:outInterceptors>  -->
+    </jaxrs:server>
+</beans>
