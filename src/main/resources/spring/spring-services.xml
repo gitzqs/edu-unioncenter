@@ -21,14 +21,17 @@
     </cxf:bus>
 
     <!-- user -->
-    <bean id="testService" class="com.zqs.service.impl.DefaultTestServiceImpl"></bean>
+    <bean id="userService" class="com.zqs.service.user.impl.DefaultUserServiceImpl"></bean>
+    <!-- code -->
+    <bean id="codeService" class="com.zqs.service.code.impl.DefaultCodeServiceImpl"></bean>
     
     <!--REST发布容器-->
     <jaxrs:server id="restServiceContainer" address="/rest">
         <jaxrs:serviceBeans>
             <!-- user -->
-            <ref bean="testService"/>
-            
+            <ref bean="userService"/>
+            <!-- code -->
+            <ref bean="codeService"/>
         </jaxrs:serviceBeans>
         <jaxrs:extensionMappings>
             <entry key="json" value="application/json" />

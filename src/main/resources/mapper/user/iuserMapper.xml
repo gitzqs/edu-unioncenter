@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqs.dao.user.IUserMapper">
+	<resultMap id="userMap" type="user">
+		<id column="ID" property="id" jdbcType="DECIMAL"/>
+		<result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+		<result column="USER_MOBILE" property="userMobile" jdbcType="VARCHAR"/>
+		<result column="USER_PWD" property="userPwd" jdbcType="VARCHAR"/>
+		<result column="REG_TIME" property="regTime" jdbcType="TIMESTAMP"/>
+		
+		<result column="ERROR_NUM" property="errorNum" jdbcType="DECIMAL"/>
+		<result column="FROZEN_TIME" property="frozenTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_ERROR_TIME" property="lastErrorTime" jdbcType="TIMESTAMP"/>
+		<result column="STATUS" property="status" jdbcType="DECIMAL"/>
+		
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR"/>
+		
+		<result column="CREATOR_ID" property="creatorId" jdbcType="DECIMAL"/>
+		<result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_OPERATOR_ID" property="lastOperatorId" jdbcType="DECIMAL"/>
+		<result column="LAST_OPERATED_TIME" property="lastOperatedTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- 新增 begin -->
+	<insert id="save" parameterType="user">
+		INSERT INTO TB_USER(USER_MOBILE,USER_PWD,REG_TIME,ERROR_NUM,STATUS)VALUES(
+			#{userMobile},#{userPwd},#{regTime},#{errorNum},#{status}
+		)
+	</insert>
+	<!-- 新增 end -->
+	
+	
+	<!-- 验证用户是否已经存在 begin -->
+	<select id="isExists" parameterType="String" resultType="int">
+		SELECT  COUNT(1)
+		FROM TB_USER
+		WHERE USER_MOBILE = #{mobile}
+	</select>
+	<!-- 验证用户是否已经存在 end -->
+	
+	
+	<!-- 获取帐号信息 begin -->
+	<select id="load" parameterType="String" resultMap="userMap">
+		SELECT ID, USER_MOBILE, USER_PWD, REG_TIME, LAST_ERROR_TIME, FROZEN_TIME,
+			ERROR_NUM, STATUS
+		FROM TB_USER
+		WHERE USER_MOBILE = #{mobile}
+	</select>
+	<!-- 获取帐号信息 end -->
+	
+	<!-- 更新 begin -->
+	<update id="update" parameterType="user">
+		UPDATE TB_USER
+			<set>
+				ERROR_NUM = #{errorNum}
+				<if test="lastLoginTime != null and lastLoginTime != ''">
+					,LAST_LOGIN_TIME = #{lastLoginTime}
+				</if>
+				<if test="frozenTime != null and frozenTime != ''">
+					,FROZEN_TIME = #{frozenTime}
+				</if>
+				<if test="lastErrorTime != null and lastErrorTime != ''">
+					,LAST_ERROR_TIME = #{lastErrorTime}
+				</if>
+				<if test="status != null and status != ''">
+					,STATUS = #{status}
+				</if>
+			</set>
+		WHERE USER_MOBILE = #{userMobile}
+	</update>
+	<!-- 更新 end -->
+	
+</mapper>

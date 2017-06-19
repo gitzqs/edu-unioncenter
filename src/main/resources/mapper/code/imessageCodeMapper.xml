@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqs.dao.code.IMessageCodeMapper">
+	<resultMap id="messageCodeMap" type="messageCode">
+		<id column="ID" property="id" jdbcType="DECIMAL"/>
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR"/>
+		<result column="TYPE" property="type" jdbcType="DECIMAL"/>
+		<result column="CODE" property="code" jdbcType="VARCHAR"/>
+		<result column="BEGIN_TIME" property="beginTime" jdbcType="TIMESTAMP"/>
+		
+		<result column="END_TIME" property="endTime" jdbcType="TIMESTAMP"/>
+		<result column="STATUS" property="status" jdbcType="DECIMAL"/>
+	</resultMap>
+	
+	<!-- 新增 begin -->
+	<insert id="save" parameterType="messageCode">
+		INSERT INTO TB_MESSAGE_CODE(MOBILE,TYPE,CODE,BEGIN_TIME,END_TIME,STATUS)VALUES(
+			#{mobile},#{type},#{code},#{beginTime},#{endTime},#{status}
+		)
+	</insert>
+	<!-- 新增 end -->
+	
+	
+	<!-- 获取当前有效验证码 begin -->
+	<select id="load" parameterType="Map" resultMap="messageCodeMap">
+		SELECT ID, MOBILE, TYPE, CODE, BEGIN_TIME,
+			END_TIME, STATUS
+		FROM TB_MESSAGE_CODE
+		WHERE MOBILE = #{mobile}
+			AND STATUS = 1 AND TYPE = #{type}
+		LIMIT 1
+	</select>
+	<!-- 获取当前有效验证码 end -->
+	
+	<!-- 更新 begin -->
+	<update id="update" parameterType="messageCode">
+		UPDATE TB_MESSAGE_CODE
+			SET STATUS = #{status}
+		WHERE ID = #{id}
+	</update>
+	<!-- 更新 end -->
+</mapper>

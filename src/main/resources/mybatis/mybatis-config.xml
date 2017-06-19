@@ -26,7 +26,8 @@
 	</settings>
 
 	<typeAliases>
-		
+		<typeAlias type="com.zqs.model.user.User" alias="user"/>
+		<typeAlias type="com.zqs.model.code.MessageCode" alias="messageCode"/>
 	</typeAliases>
 	
 	
