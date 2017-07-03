@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqs.dao.course.ICourseDetailMapper">
+	<resultMap id="courseDetailMap" type="courseDetail">
+		<id column="ID" property="id" jdbcType="DECIMAL"/>
+		<result column="COURSE_ID" property="courseId" jdbcType="DECIMAL"/>
+		<result column="TITLE" property="title" jdbcType="VARCHAR"/>
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+		<result column="URL" property="url" jdbcType="VARCHAR"/>
+		
+		<result column="VIEW_NUM" property="viewNum" jdbcType="DECIMAL"/>
+		
+		<result column="CREATOR_ID" property="creatorId" jdbcType="DECIMAL"/>
+		<result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_OPERATOR_ID" property="lastOperatorId" jdbcType="DECIMAL"/>
+		<result column="LAST_OPERATED_TIME" property="lastOperatedTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+</mapper>

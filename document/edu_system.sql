@@ -10,10 +10,69 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2017-06-19 16:40:49
+Date: 2017-07-03 16:55:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for tb_course_category
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_course_category`;
+CREATE TABLE `tb_course_category` (
+  `id` int(19) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL COMMENT '课程名称',
+  `description` varchar(255) DEFAULT NULL,
+  `creator_id` int(19) DEFAULT NULL,
+  `created_time` timestamp NULL DEFAULT NULL,
+  `last_operator_id` int(19) DEFAULT NULL,
+  `last_operated_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uni_course_category_name` (`name`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for tb_course_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_course_detail`;
+CREATE TABLE `tb_course_detail` (
+  `id` int(19) NOT NULL AUTO_INCREMENT,
+  `course_id` int(19) NOT NULL COMMENT '课程',
+  `title` varchar(50) DEFAULT NULL COMMENT '标题',
+  `description` varchar(255) DEFAULT NULL COMMENT '课节描述',
+  `url` varchar(255) DEFAULT NULL COMMENT '视频地址',
+  `view_num` int(20) DEFAULT NULL COMMENT '观看过人数',
+  `creator_id` int(19) DEFAULT NULL,
+  `created_time` timestamp NULL DEFAULT NULL,
+  `last_operator_id` int(19) DEFAULT NULL,
+  `last_operated_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ind_detail_course_id` (`course_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for tb_course_info
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_course_info`;
+CREATE TABLE `tb_course_info` (
+  `id` int(19) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL COMMENT '课程名称',
+  `node_number` int(10) DEFAULT NULL COMMENT '课程节数',
+  `unit_price` double(20,2) DEFAULT NULL,
+  `category_id` int(19) DEFAULT NULL COMMENT '课程类别',
+  `level` int(10) DEFAULT NULL COMMENT '课程级别（初级:0;中级:1;高级:2）',
+  `begin_time` date DEFAULT NULL COMMENT '课程开始时间',
+  `end_time` date DEFAULT NULL COMMENT '课程结束时间',
+  `status` int(1) DEFAULT NULL COMMENT '课程当前状态(0:失效;1:生效)',
+  `creator_id` int(19) DEFAULT NULL,
+  `creator_time` timestamp NULL DEFAULT NULL,
+  `last_operator_id` int(19) DEFAULT NULL,
+  `last_operated_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ind_course_category_id` (`category_id`) USING BTREE,
+  KEY `ind_course_level` (`level`) USING BTREE,
+  KEY `ind_course_status` (`status`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程总览信息';
 
 -- ----------------------------
 -- Table structure for tb_message_code

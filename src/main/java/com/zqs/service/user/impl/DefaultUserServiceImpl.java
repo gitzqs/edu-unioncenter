@@ -167,7 +167,6 @@ public class DefaultUserServiceImpl implements IUserService {
 									user.setErrorNum(5);
 									user.setLastLoginTime(date);
 									userMapper.update(user);
-									
 								}else{
 									//验证当前错误次数
 									if( ur.getLastErrorTime() != null 
@@ -204,7 +203,6 @@ public class DefaultUserServiceImpl implements IUserService {
 													+ ",再输入错误" + (ur.getErrorNum() - 1) + "次，帐号将冻结3个小时";
 										}										
 									}
-
 								}
 							}
 						}else{
@@ -235,5 +233,4 @@ public class DefaultUserServiceImpl implements IUserService {
 		returnObject.setReturnMsg(returnMsg);
 		return JacksonUtils.object2json(returnObject);
 	}
-
 }

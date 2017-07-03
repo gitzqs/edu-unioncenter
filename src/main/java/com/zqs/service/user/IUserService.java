@@ -36,4 +36,5 @@ public interface IUserService {
 	@Path("/login")
 	@Transactional
 	String login(User user);
+	
 }
