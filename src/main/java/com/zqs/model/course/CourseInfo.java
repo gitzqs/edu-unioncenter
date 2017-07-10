@@ -16,6 +16,12 @@ public class CourseInfo extends REntity{
 	/** 课程名称 */
 	private String name;
 	
+	/** 课程图片 */
+	private String img;
+	
+	/** 课程老师 */
+	private int teacherId;
+	
 	/** 节数 */
 	private int nodeNumber;
 	
@@ -36,6 +42,9 @@ public class CourseInfo extends REntity{
 	
 	/** 状态 */
 	private int status;
+	
+	/** 描述 */
+	private String description;
 
 	public String getName() {
 		return name;
@@ -99,6 +108,30 @@ public class CourseInfo extends REntity{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public int getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
 	}
 	
 	

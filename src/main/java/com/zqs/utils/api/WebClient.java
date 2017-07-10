@@ -14,8 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zqs.model.basics.ReturnObject;
-import com.zqs.model.basics.e.EMessageCodeType;
-import com.zqs.model.code.MessageCode;
+import com.zqs.model.user.User;
 import com.zqs.utils.json.JacksonUtils;
 
 /**
@@ -29,7 +28,7 @@ public class WebClient {
 	
 	private static Logger logger = LoggerFactory.getLogger(WebClient.class);
 	
-	public static String SERVER_ADDR = "http://localhost:9080/unioncenter/services/rest/";
+	public static String SERVER_ADDR = "http://www.easygoing.xin:9080/unioncenter/services/rest/";
 	/**
 	 * 接口调用
 	 * 
@@ -64,10 +63,12 @@ public class WebClient {
     }
 	
 	public static void main(String args[]){
-		MessageCode mc = new MessageCode();
-		mc.setMobile("15205155720");
-		mc.setType(EMessageCodeType.REGISTER_CODE);
-		ReturnObject ro = callRest("code/generate", mc);
+		User user = new User();
+		user.setUserMobile("15205155720");
+		user.setUserPwd("123456");
+		user.setUserPwdAgain("123456");
+		user.setMessageCode("123456");
+		ReturnObject ro = callRest("user/register", user);
 		
 		System.out.println(ro.getReturnMsg());
 		

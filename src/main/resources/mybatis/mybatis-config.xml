@@ -33,5 +33,4 @@
 		<typeAlias type="com.zqs.model.course.CourseDetail" alias="courseDetail"/>
 	</typeAliases>
 	
-	
 </configuration>

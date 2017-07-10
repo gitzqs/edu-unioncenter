@@ -1,5 +1,7 @@
 package com.zqs.utils.string;
 
+import com.zqs.model.course.CourseInfo;
+
 
 /**
  * 字符串处理
@@ -37,5 +39,10 @@ public class StringUtils {
 		}else{
 			return false;
 		}
+	}
+	
+	public static void main(String args[]){
+		CourseInfo ci = new CourseInfo();
+		System.out.println(ci.getUnitPrice());
 	}
 }

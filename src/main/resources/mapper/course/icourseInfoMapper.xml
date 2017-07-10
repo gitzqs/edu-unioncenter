@@ -18,5 +18,15 @@
 		<result column="LAST_OPERATOR_ID" property="lastOperatorId" jdbcType="DECIMAL"/>
 		<result column="LAST_OPERATED_TIME" property="lastOperatedTime" jdbcType="TIMESTAMP"/>
 	</resultMap>
+	
+	<!-- 新增 begin -->
+	<insert id="save" parameterType="courseInfo">
+		INSERT INTO TB_COURSE_INFO(NAME,NODE_NUMBER,UNIT_PRICE,CATEGORY_ID,LEVEL,BEGIN_TIME,
+			END_TIME,STATUS)VALUES(
+				#{name},#{nodeNumber},#{unitPrice},#{categoryId},#{level},#{beginTime},
+				#{endTime},#{status}
+			)
+	</insert>
+	<!-- 新增 end -->
 
 </mapper>
