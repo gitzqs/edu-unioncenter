@@ -20,5 +20,19 @@ public class DefaultCourseServiceImpl implements ICourseService {
 	private Logger logger = LoggerFactory.getLogger(DefaultCourseServiceImpl.class);
 	@Autowired
 	private ICourseInfoMapper courseInfoMapper;
+	@Override
+	public String loadCourse(CourseInfo course) {
+		ReturnObject returnObject = new ReturnObject();
+		String returnCode = ReturnCode.SUCCESS_CODE;
+		String returnMsg = ReturnCode.SUCCESS_MSG;
+		
+		if(course.getId() != 0){
+			
+		}else{
+			returnCode = ReturnCode.EMPTY_PARAMS_CODE;
+			returnMsg = ReturnCode.ENPTY_PARAMS_MSG;
+		}
+		return null;
+	}
 	
 }

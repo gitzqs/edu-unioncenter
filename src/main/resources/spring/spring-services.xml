@@ -24,6 +24,8 @@
     <bean id="userService" class="com.zqs.service.user.impl.DefaultUserServiceImpl"></bean>
     <!-- code -->
     <bean id="codeService" class="com.zqs.service.code.impl.DefaultCodeServiceImpl"></bean>
+    <!-- course -->
+    <bean id="courseService" class="com.zqs.service.course.impl.DefaultCourseServiceImpl"></bean>
     
     <!--REST发布容器-->
     <jaxrs:server id="restServiceContainer" address="/rest">
@@ -32,6 +34,8 @@
             <ref bean="userService"/>
             <!-- code -->
             <ref bean="codeService"/>
+            <!-- course -->
+            <ref bean="courseService"/>
         </jaxrs:serviceBeans>
         <jaxrs:extensionMappings>
             <entry key="json" value="application/json" />
