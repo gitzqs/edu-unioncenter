@@ -4,10 +4,12 @@
 	<resultMap id="courseInfoMap" type="courseInfo">
 		<id column="ID" property="id" jdbcType="DECIMAL"/>
 		<result column="NAME" property="name" jdbcType="VARCHAR"/>
+		<result column="IMG" property="img" jdbcType="VARCHAR"/>
+		<result column="TEACHER_ID" property="teacherId" jdbcType="DECIMAL"/>
 		<result column="NODE_NUMBER" property="nodeNumber" jdbcType="DECIMAL"/>
+		
 		<result column="UNIT_PRICE" property="unitPrice" jdbcType="DECIMAL"/>
 		<result column="CATEGORY_ID" property="categoryId" jdbcType="DECIMAL"/>
-		
 		<result column="LEVEL" property="level" jdbcType="DECIMAL"/>
 		<result column="BEGIN_TIME" property="beginTime" jdbcType="TIMESTAMP"/>
 		<result column="END_TIME" property="endTime" jdbcType="TIMESTAMP"/>
@@ -18,15 +20,5 @@
 		<result column="LAST_OPERATOR_ID" property="lastOperatorId" jdbcType="DECIMAL"/>
 		<result column="LAST_OPERATED_TIME" property="lastOperatedTime" jdbcType="TIMESTAMP"/>
 	</resultMap>
-	
-	<!-- 新增 begin -->
-	<insert id="save" parameterType="courseInfo">
-		INSERT INTO TB_COURSE_INFO(NAME,NODE_NUMBER,UNIT_PRICE,CATEGORY_ID,LEVEL,BEGIN_TIME,
-			END_TIME,STATUS)VALUES(
-				#{name},#{nodeNumber},#{unitPrice},#{categoryId},#{level},#{beginTime},
-				#{endTime},#{status}
-			)
-	</insert>
-	<!-- 新增 end -->
 
 </mapper>
